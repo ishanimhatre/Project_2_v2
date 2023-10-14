@@ -12,6 +12,7 @@ public class Profile implements Comparable<Profile> {
     private String fname; //account holder first name
     private String lname; //account holder last name
     private Date dob; //account holder birthdate
+    public static final int SAME_PROFILE = 0;
 
     /**
      * Default constructor
@@ -61,20 +62,24 @@ public class Profile implements Comparable<Profile> {
      * @return result of comparison of two Profiles
      */
     @Override
-    public int compareTo(Profile otherProfile) {
-        // Compare based on first name, last name, and DOB
-
-        int firstNameComparison = this.fname.compareTo(otherProfile.fname);
-        if (firstNameComparison != 0) {
-            return firstNameComparison;
+    @Override
+    public int compareTo(Profile profile) {
+        if(profile.lname.equals(this.lname)){
+            if(profile.fname.equals(this.fname)){
+                if(profile.dob.equals(this.dob)){
+                    return SAME_PROFILE;
+                }
+                else{
+                    return profile.dob.compareTo(this.dob);
+                }
+            }
+            else{
+                return profile.fname.compareTo(this.fname);
+            }
         }
-
-        int lastNameComparison = this.lname.compareTo(otherProfile.lname);
-        if (lastNameComparison != 0) {
-            return lastNameComparison;
+        else{
+            return profile.lname.compareTo(this.lname);
         }
-
-        return this.dob.compareTo(otherProfile.dob);
     }
 
 }
