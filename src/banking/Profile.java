@@ -56,8 +56,8 @@ public class Profile implements Comparable<Profile>{
      */
     @Override
     public int compareTo(Profile profile) {
-        if(profile.lname.equals(this.lname)){
-            if(profile.fname.equals(this.fname)){
+        if(profile.lname.equalsIgnoreCase(this.lname)){
+            if(profile.fname.equalsIgnoreCase(this.fname)){
                 if(profile.dob.equals(this.dob)){
                     return SAME_PROFILE;
                 }
