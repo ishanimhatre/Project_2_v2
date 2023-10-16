@@ -2,6 +2,8 @@ package inheritanceprojectfiles;
 
 public class Checking extends Account{
 
+    public class Checking extends Account{
+
     private static final double INTEREST_RATE = 1.0;
     private static final int MONTHLY_FEE = 12;
 
@@ -32,5 +34,9 @@ public class Checking extends Account{
        else {
            return account.getClass().getName().compareTo(this.getClass().getName());
         }
+    }
+    @Override
+    public String toString(){
+        return "College Checking: : " +holder.toString() + ": : Balance $" + balance;
     }
 }
