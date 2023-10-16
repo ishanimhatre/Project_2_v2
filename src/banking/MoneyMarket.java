@@ -2,7 +2,7 @@ package banking;
 
 public class MoneyMarket extends Savings{
 
-    private int withdrawal; //number of withdrawls
+   private int withdrawal; //number of withdrawls
     private static final double INTEREST_RATE = 4.5;
 
     public MoneyMarket(){
@@ -50,5 +50,13 @@ public class MoneyMarket extends Savings{
         else {
             return account.getClass().getName().compareTo(this.getClass().getName());
         }
+    }
+
+    @Override
+    public String toString() {
+        if (isLoyal)
+            return "Money Market: : " + holder.toString() + ": : Balance $" + balance + ": : is loyal";
+        else
+            return "Money Market: : " + holder.toString() + ": : Balance $" + balance;
     }
 }
