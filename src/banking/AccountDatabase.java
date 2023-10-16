@@ -170,7 +170,8 @@ public class AccountDatabase {
 //        }
 //    }
 
-    public void printFeesAndInterests() {
+       public void printFeesAndInterests() {
+        System.out.println("*list of accounts with fee and monthly interest");
         if (numAcct == 0) {
             System.out.println("Account Database is empty!");
         } else {
@@ -213,6 +214,7 @@ public class AccountDatabase {
             printAccounts(moneyMarketAccounts, numMoneyMarket);
             printAccounts(savingsAccounts, numSavings);
         }
+        System.out.println("*end of list.");
     }
 
     private void printAccounts(Account[] accounts, int numAccounts) {
@@ -245,10 +247,6 @@ public class AccountDatabase {
             System.out.printf("%s::%s %s::Balance $%.2f%s::fee $%.2f::monthly interest $%.2f%n", accountType, holder, dob, balance, loyalInfo, monthlyFee, monthlyInterest);
         }
     }
-
-
-
-
 
 
     // Apply interests and fees to update balances
