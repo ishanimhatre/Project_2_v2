@@ -86,7 +86,7 @@ public class TransactionManager {
             double amount = Double.parseDouble(inputData[5]);
 
             if (amount <= LOWER_BOUND) {
-                return ("Deposit - amount cannot be 0 or negative.\n");
+                return ("Deposit - amount cannot be 0 or negative.");
             }
 
             Account account = createDummyAccount(accountType, profile);
@@ -128,7 +128,7 @@ public class TransactionManager {
                 accountDatabase.close(account);
                 return profile.toString() + " (" + accountType + ") has been closed.";
             } else
-                return profile.toString() + " (" + accountType + ") not in the database.";
+                return profile.toString() + " (" + accountType + ") is not in the database.";
         } catch (Exception e) {
             return (e.toString());
         }
