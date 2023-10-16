@@ -1,11 +1,6 @@
-package banking;
+package inheritanceprojectfiles;
 
 import java.util.Calendar;
-
-/** This class initializes Date object with year, month, and day. Checks if input date is valid
- * @author Ishani Mhatre
- */
-
 
 public class Date implements Comparable<Date> {
 
@@ -133,11 +128,17 @@ public class Date implements Comparable<Date> {
         return true;
     }
 
+   public int getAge(){
+       Calendar birthDateCalendar = Calendar.getInstance();
+       birthDateCalendar.set(this.getYear(), this.getMonth(), this.getDay());
+       Calendar today = Calendar.getInstance();
+       return today.get(Calendar.YEAR) - birthDateCalendar.get(Calendar.YEAR);
+   }
 
-    /**
-     * Check that Date is in the future, not past
-     * @return true if Date set in the future, false if not
-     */
+        /**
+         * Check that Date is in the future, not past
+         * @return true if Date set in the future, false if not
+         */
     boolean isFutureDate() {
         Calendar today = Calendar.getInstance();
         Calendar eventDate = Calendar.getInstance();
@@ -399,5 +400,3 @@ public class Date implements Comparable<Date> {
         return day;
     }
 }
-
-
