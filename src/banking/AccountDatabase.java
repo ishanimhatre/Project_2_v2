@@ -27,8 +27,7 @@ public class AccountDatabase {
     // Find an account in the array
     private int find(Account account) {
         for (int i = 0; i < numAcct; i++) {
-            int comparison = account.compareTo(accounts[i]);
-            if (comparison ==0) {
+            if (account.getClass() == accounts[i].getClass() && account.compareTo(accounts[i]) == 0) {
                 return i;
             }
         }
