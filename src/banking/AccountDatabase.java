@@ -170,7 +170,7 @@ public class AccountDatabase {
 //        }
 //    }
 
-       public void printFeesAndInterests() {
+ public void printFeesAndInterests() {
         System.out.println("*list of accounts with fee and monthly interest");
         if (numAcct == 0) {
             System.out.println("Account Database is empty!");
@@ -243,18 +243,29 @@ public class AccountDatabase {
                 }
             }
 
+            String withdrawalNum = "";
 
-            System.out.printf("%s::%s %s::Balance $%.2f%s::fee $%.2f::monthly interest $%.2f%n", accountType, holder, dob, balance, loyalInfo, monthlyFee, monthlyInterest);
+            if (accountType.equals("MoneyMarket")) {
+                MoneyMarket moneyMarketAccount = (MoneyMarket) account;
+                withdrawalNum += "::withdrawal: " + moneyMarketAccount.getWithdrawal();
+            }
+
+            System.out.printf("%s::%s %s::Balance $%.2f%s::fee $%.2f::monthly interest $%.2f%n", accountType, holder, dob, balance, withdrawalNum, loyalInfo, monthlyFee, monthlyInterest);
         }
     }
 
 
+
+
+
+
+    // Apply interests and fees to update balances
     // Apply interests and fees to update balances
     public void printUpdatedBalances() {
-
         if (numAcct == 0) {
             System.out.println("Account Database is empty!");
         } else {
+            System.out.println("*list of accounts with fees and interests applied.");
             for (int i = 0; i < numAcct; i++) {
                 Account account = accounts[i];
                 double monthlyInterest = account.monthlyInterest();
@@ -264,11 +275,23 @@ public class AccountDatabase {
                 double updatedBalance = account.getBalance() + monthlyInterest - monthlyFee;
                 account.setBalance(updatedBalance);
 
-                String accountType = account.getClass().getSimpleName(); // Get the account type
+                // Get the account type and profile details
+                String accountType = account.getClass().getSimpleName();
+                String profileDetails = account.getProfile().toString();
+                String balanceString = String.format("Balance $%.2f", updatedBalance);
 
-                // Print the updated balance for each account
-                System.out.printf("%s - Updated Balance: $%.2f%n", accountType, updatedBalance);
+                // Special handling for MoneyMarket accounts
+                if (accountType.equals("MoneyMarket")) {
+                    MoneyMarket moneyMarketAccount = (MoneyMarket) account;
+                    balanceString += "::" + (moneyMarketAccount.isLoyal() ? "is loyal" : "not loyal");
+                    balanceString += "::withdrawal: " + moneyMarketAccount.getWithdrawal();
+                } else if (accountType.equals("Savings") && profileDetails.contains("is loyal")) {
+                    balanceString += "::is loyal";
+                }
+
+                System.out.println(accountType + "::" + profileDetails + "::" + balanceString);
             }
+            System.out.println("*end of list.");
         }
     }
 
