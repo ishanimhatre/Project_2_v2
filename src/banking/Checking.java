@@ -1,4 +1,4 @@
-package banking;
+package inheritanceprojectfiles;
 
 public class Checking extends Account{
 
@@ -26,7 +26,7 @@ public class Checking extends Account{
 
     @Override
     public int compareTo(Account account) {
-        if(account instanceof Checking && !(account instanceof CollegeChecking)){
+        if(account instanceof Checking){
             return super.compareTo(account);
         }
        else {
