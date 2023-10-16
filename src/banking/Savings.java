@@ -43,7 +43,7 @@ public class Savings extends Account{
 
     @Override
     public int compareTo(Account account) {
-        if(account instanceof Savings && (!(account instanceof MoneyMarket))){
+        if(account instanceof Savings){
             return super.compareTo(account);
         }
         else {
