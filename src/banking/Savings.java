@@ -50,4 +50,12 @@ public class Savings extends Account{
             return account.getClass().getName().compareTo(this.getClass().getName());
         }
     }
+
+    @Override
+    public String toString(){
+        if(isLoyal)
+            return "College Checking: : " +holder.toString() + ": : Balance $" + balance + ": : is loyal";
+        else
+            return "College Checking: : " +holder.toString() + ": : Balance $" + balance;
+    }
 }
