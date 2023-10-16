@@ -1,4 +1,4 @@
-package banking;
+package inheritanceprojectfiles;
 
 public class CollegeChecking extends Checking{
 
@@ -15,7 +15,7 @@ public class CollegeChecking extends Checking{
 
     @Override
     public int compareTo(Account account) {
-        if(account instanceof CollegeChecking){
+        if(account instanceof Checking){
             return super.compareTo(account);
         }
         else {
@@ -23,4 +23,3 @@ public class CollegeChecking extends Checking{
         }
     }
 }
-
