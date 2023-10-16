@@ -1,4 +1,4 @@
-package inheritanceprojectfiles;
+package banking;
 
 /**
  * Class to hold accounts of different types
@@ -108,32 +108,63 @@ public class AccountDatabase {
         return true;
     }
 
-    // Sort accounts by account type and profile
-    public void printSorted() {
+    public boolean printSorted(String[] inputData) {
         // Create a copy of the accounts array to avoid modifying the original array
-        Account[] sortedAccounts = Arrays.copyOf(accounts, numAcct);
+        // Account[] sortedAccounts = new Account[numAcct];
 
-        // Sort the accounts using a custom comparator
-        Arrays.sort(sortedAccounts, new Comparator<Account>() {
-            @Override
-            public int compare(Account account1, Account account2) {
-                // First, compare account types
-                int typeComparison = account1.getClass().getSimpleName().compareTo(account2.getClass().getSimpleName());
-                if (typeComparison != 0) {
-                    return typeComparison;
-                }
 
-                // If account types are the same, compare by profile
-                int profileComparison = account1.holder.compareTo(account2.holder);
-                return profileComparison;
-            }
-        });
+        // Sort the accounts using bubble sort
+        bubbleSort(accounts);
 
         // Print the sorted accounts
-        for (Account account : sortedAccounts) {
-            System.out.println(account); // You can customize the toString() method for Account class
+        for (Account account : accounts) {
+            System.out.println(account);
+
+        }
+        return false;
+    }
+
+    // Bubble sort algorithm
+    private void bubbleSort(Account[] accounts) {
+        System.out.println("*Accounts sorted by account type and profile.\n");
+//        int n = accounts.length;
+//        boolean swapped;
+//        int typeComparison = (accounts[i].compareTo(accounts[i + 1]);
+        for (int i = 0; i < numAcct - 1; i++) {
+            for (int j = 0; j < numAcct - i - 1; j++) {
+                if (accounts[j].compareTo(accounts[j + 1]) < 0) { //element on left is greater than element on the right
+                    Account temp = accounts[j];
+                    accounts[j] = accounts[j + 1];
+                    accounts[j + 1] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < numAcct; i++) {
+            System.out.println(accounts[i].toString());
         }
     }
+//        do {
+//            swapped = false;
+////            for (int i = 0; i < n - 1; i++) {
+//                int typeComparison = (accounts[i].compareTo(accounts[i + 1]);
+//
+//
+////                // Check if either of the profiles (holder) is null
+////                if (accounts[i].holder == null || accounts[i + 1].holder == null) {
+////                    // Handle the case where a profile is null (you can define your logic here)
+////                } else {
+////                    int profileComparison = accounts[i].holder.compareTo(accounts[i + 1].holder);
+////                    if (typeComparison > 0 || (typeComparison == 0 && profileComparison > 0)) {
+////                        // Swap accounts[i] and accounts[i+1]
+////                        Account temp = accounts[i];
+////                        accounts[i] = accounts[i + 1];
+////                        accounts[i + 1] = temp;
+////                        swapped = true;
+////                    }
+////                }
+//            }
+//        } while (swapped);
+//    }
 
 
 
@@ -170,5 +201,7 @@ public class AccountDatabase {
             System.out.printf("%s - Updated Balance: $%.2f%n", accountType, updatedBalance);
         }
     }
+
+
 
 }
