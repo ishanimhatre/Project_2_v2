@@ -22,4 +22,9 @@ public class CollegeChecking extends Checking{
             return account.getClass().getName().compareTo(this.getClass().getName());
         }
     }
+
+    @Override
+    public String toString(){
+        return "College Checking: : " +holder.toString() + ": : Balance $" + balance + ": :" + campus.name();
+    }
 }
