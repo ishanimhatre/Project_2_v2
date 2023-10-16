@@ -1,17 +1,10 @@
-package banking;
+package inheritanceprojectfiles;
 
-import java.util.Date;
+public class Profile implements Comparable<Profile>{
+    private String fname;
+    private String lname;
+    private Date dob;
 
-/** This class initializes Profile with values for first name, last name, and date of both. Compares if two profiles are identical.
- * @author Ishani Mhatre
- */
-
-public class Profile implements Comparable<Profile> {
-
-
-    private String fname; //account holder first name
-    private String lname; //account holder last name
-    private Date dob; //account holder birthdate
     public static final int SAME_PROFILE = 0;
 
     /**
@@ -62,7 +55,6 @@ public class Profile implements Comparable<Profile> {
      * @return result of comparison of two Profiles
      */
     @Override
-    @Override
     public int compareTo(Profile profile) {
         if(profile.lname.equals(this.lname)){
             if(profile.fname.equals(this.fname)){
@@ -81,5 +73,8 @@ public class Profile implements Comparable<Profile> {
             return profile.lname.compareTo(this.lname);
         }
     }
-
+    @Override
+        public String toString(){
+        return this.fname + " " + this.lname + " " + this.dob;
+    }
 }
