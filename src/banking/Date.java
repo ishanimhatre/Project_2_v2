@@ -130,11 +130,17 @@ public class Date implements Comparable<Date> {
 
    public int getAge(){
        Calendar birthDateCalendar = Calendar.getInstance();
-       birthDateCalendar.set(this.getYear(), this.getMonth(), this.getDay());
+       birthDateCalendar.set(this.getYear(), this.getMonth() - 1, this.getDay());
        Calendar today = Calendar.getInstance();
-       return today.get(Calendar.YEAR) - birthDateCalendar.get(Calendar.YEAR);
-   }
+       int age = today.get(Calendar.YEAR) - birthDateCalendar.get(Calendar.YEAR);
 
+       if (today.get(Calendar.MONTH) < birthDateCalendar.get(Calendar.MONTH) ||
+               (today.get(Calendar.MONTH) == birthDateCalendar.get(Calendar.MONTH) &&
+                       today.get(Calendar.DAY_OF_MONTH) < birthDateCalendar.get(Calendar.DAY_OF_MONTH))) {
+           age--;
+       }
+       return age;
+   }
         /**
          * Check that Date is in the future, not past
          * @return true if Date set in the future, false if not
