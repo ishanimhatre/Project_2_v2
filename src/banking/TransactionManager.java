@@ -65,8 +65,8 @@ public class TransactionManager {
     }
 
     private String handleCommandD(String[] inputData) {
-        if (inputData.length < 4) {
-            return ("Invalid input format. Expected: D <AccountType> <Name> <DateOfBirth> <Amount>");
+        if (inputData.length < 5) {
+            return ("Missind date for depositing into account.");
         }
 
         try {
@@ -82,6 +82,11 @@ public class TransactionManager {
             }
 
             Account account = createDummyAccount(accountType, profile);
+
+            if (account == null) {
+                return ("Invalid account type.");
+            }
+
             // Validate the account holder's information (you may need to implement your own logic for this)
             if (!accountDatabase.contains(account)) {
                 return (profile.toString() + "(" + accountType + ") is not in the database.");
@@ -297,11 +302,7 @@ public class TransactionManager {
             }
         }
     }
-
-//   private String handleCommandUB(){
-//        System.out.println("*list of accounts with fees and interests applied.");
-//
-//   }
+    
 
     public Account createDummyAccount(String accountType, Profile profile){
         switch(accountType){
